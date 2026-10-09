@@ -1,5 +1,3 @@
-import nodemailer from "nodemailer";
-
 export const runtime = "nodejs";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -19,11 +17,10 @@ export async function POST(request) {
       );
     }
 
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
+    const resendApiKey = process.env.RESEND_API_KEY;
 
-    if (!smtpUser || !smtpPass) {
-      console.error("Contact form email credentials are not configured.");
+    if (!resendApiKey) {
+      console.error("RESEND_API_KEY is not configured.");
       return Response.json(
         { error: "The contact service is not configured yet. Please try again later." },
         { status: 503 }
@@ -32,33 +29,52 @@ export async function POST(request) {
 
     const safeTopic = topic.replace(/[\r\n]/g, " ").slice(0, 120) || "General Inquiry";
     const safeName = name.replace(/[\r\n]/g, " ").slice(0, 120);
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || "smtp.gmail.com",
-      port: Number(process.env.SMTP_PORT || 465),
-      secure: (process.env.SMTP_SECURE || "true") === "true",
-      auth: {
-        user: smtpUser,
-        pass: smtpPass,
+    const emailText = [
+      `Name: ${safeName}`,
+      `Email: ${email}`,
+      `Topic: ${safeTopic}`,
+      "",
+      message,
+    ].join("\n");
+
+    const resendResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${resendApiKey}`,
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        from:
+          process.env.CONTACT_FROM_EMAIL ||
+          "Aayush Paneru Portfolio <onboarding@resend.dev>",
+        to: [process.env.CONTACT_TO_EMAIL || "imaayushpaneru@gmail.com"],
+        reply_to: email,
+        subject: `[Portfolio Inquiry] ${safeTopic}`,
+        text: emailText,
+      }),
     });
 
-    await transporter.sendMail({
-      from: `Aayush Paneru Portfolio <${smtpUser}>`,
-      to: process.env.CONTACT_TO_EMAIL || "imaayushpaneru@gmail.com",
-      replyTo: email,
-      subject: `[Portfolio Inquiry] ${safeTopic}`,
-      text: [
-        `Name: ${safeName}`,
-        `Email: ${email}`,
-        `Topic: ${safeTopic}`,
-        "",
-        message,
-      ].join("\n"),
-    });
+    const resendBody = await resendResponse.json().catch(() => null);
 
-    return Response.json({ message: "Message sent successfully." });
+    if (!resendResponse.ok) {
+      console.error("Resend rejected contact form email:", {
+        status: resendResponse.status,
+        body: resendBody,
+      });
+      return Response.json(
+        { error: "Your message could not be sent. Please try again later." },
+        { status: 502 }
+      );
+    }
+
+    return Response.json({
+      message: "Message sent successfully.",
+      id: resendBody?.id,
+    });
   } catch (error) {
-    console.error("Contact form submission failed:", error);
+    console.error("Contact form submission failed:", {
+      message: error instanceof Error ? error.message : String(error),
+    });
     return Response.json(
       { error: "Your message could not be sent. Please try again later." },
       { status: 500 }
