@@ -100,6 +100,8 @@ export default function PortfolioPage() {
   const [currentYear, setCurrentYear] = useState("2026");
   const [copyStatus, setCopyStatus] = useState("Copy");
   const [formFeedback, setFormFeedback] = useState("");
+  const [formFeedbackType, setFormFeedbackType] = useState("info");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const revealObserver = useRef(null);
 
   useEffect(() => {
@@ -153,21 +155,39 @@ export default function PortfolioPage() {
     }
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const name = data.get("name") || "";
-    const email = data.get("email") || "";
-    const topic = data.get("topic") || "General Inquiry";
-    const message = data.get("message") || "";
+    if (isSubmitting) return;
 
-    const subject = encodeURIComponent(`[Portfolio Inquiry] ${topic} — from ${name}`);
-    const body = encodeURIComponent(
-      `Hello Aayush,\n\n${message}\n\nWarm regards,\n${name}\nEmail: ${email}`
-    );
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
 
-    window.location.href = `mailto:${emailAddress}?subject=${subject}&body=${body}`;
-    setFormFeedback("Your email draft has been prepared and opened in your email app!");
+    setIsSubmitting(true);
+    setFormFeedbackType("info");
+    setFormFeedback("Sending your message...");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || "Your message could not be sent.");
+      }
+
+      form.reset();
+      setFormFeedbackType("success");
+      setFormFeedback("Message sent successfully. I will get back to you soon.");
+    } catch (error) {
+      setFormFeedbackType("error");
+      setFormFeedback(error instanceof Error ? error.message : "Your message could not be sent. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -1055,18 +1075,34 @@ export default function PortfolioPage() {
                   <textarea id="message" name="message" rows="4" placeholder="Tell me a little about your project or timeline..." required />
                 </div>
 
-                <button type="submit" className="btn btn-primary" style={{ width: "100%", justifyContent: "center" }}>
-                  Open Email Draft
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  style={{ width: "100%", justifyContent: "center" }}
+                  disabled={isSubmitting}
+                  aria-busy={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <line x1="22" y1="2" x2="11" y2="13" />
                     <polygon points="22 2 15 22 11 13 2 9 22 2" />
                   </svg>
                 </button>
 
-                {formFeedback && <p className="form-note" style={{ color: "var(--accent-primary)", fontWeight: 600 }}>{formFeedback}</p>}
+                {formFeedback && (
+                  <p
+                    className="form-note"
+                    style={{
+                      color: formFeedbackType === "error" ? "#b91c1c" : "var(--accent-primary)",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {formFeedback}
+                  </p>
+                )}
                 {!formFeedback && (
                   <p className="form-note">
-                    Submitting opens your email app with the details pre-filled and ready to send.
+                    Your message will be delivered directly to Aayush by the secure contact service.
                   </p>
                 )}
               </form>
