@@ -47,7 +47,7 @@ function MediaShowcaseSlot({
               <div className="mockup-hero-avatar">AP</div>
               <div className="mockup-title" style={{ fontSize: 18, marginTop: 4 }}>Aayush Paneru</div>
               <div className="mockup-desc" style={{ color: "#1e3a8a", fontWeight: 600 }}>
-                Full-Stack &amp; AI Systems Engineer
+                Full Stack &amp; AI Systems Engineer
               </div>
               <span className="mockup-meta-pill" style={{ marginTop: 8 }}>
                 Kathmandu, Nepal · Available
@@ -182,7 +182,7 @@ export default function PortfolioPage() {
             <span className="brand-badge">AP</span>
             <div className="brand-info">
               <span className="brand-title">Aayush Paneru</span>
-              <span className="brand-subtitle">Full-Stack &amp; AI Facilitator</span>
+              <span className="brand-subtitle">Full Stack &amp; AI Facilitator</span>
             </div>
           </a>
 
@@ -254,7 +254,7 @@ export default function PortfolioPage() {
               </h1>
 
               <p className="hero-bio">
-                I’m <strong>Aayush Paneru</strong> — a full-stack builder and technology facilitator from Nepal.
+                I’m <strong>Aayush Paneru</strong> — a full stack builder and technology facilitator from Nepal.
                 I ship web platforms, explore AI systems, and make cloud computing and cybersecurity easier to understand
                 through practical sessions.
               </p>
@@ -323,7 +323,6 @@ export default function PortfolioPage() {
               <div className="portrait-card">
                 <div className="portrait-card-header">
                   <span className="portrait-kicker">Formal portrait</span>
-                  <span className="portrait-index">PROFILE / 01</span>
                 </div>
 
                 <div className="portrait-frame">
@@ -337,7 +336,6 @@ export default function PortfolioPage() {
                   visualTag="Executive"
                 />
                   <span className="portrait-float-tag">build · teach · secure</span>
-                  <span className="portrait-float-code">AP / 01</span>
                 </div>
 
                 <div className="portrait-card-footer">
@@ -377,7 +375,7 @@ export default function PortfolioPage() {
                   </div>
                   <span className="pillar-index">01</span>
                 </div>
-                <h3 className="pillar-title">Full-Stack Web Development</h3>
+                <h3 className="pillar-title">Full Stack Web Development</h3>
                 <p className="pillar-desc">
                   Building responsive, accessible, and performant web interfaces backed by clean, maintainable
                   APIs and database integrations. Focused on user experience and robust component architecture.
@@ -405,7 +403,7 @@ export default function PortfolioPage() {
                 <h3 className="pillar-title">AI &amp; Deep Learning Research</h3>
                 <p className="pillar-desc">
                   Exploring practical machine learning implementations, computer vision, and synthetic image
-                  detection systems like YatharthaPix to evaluate real vs. AI-generated media.
+                  detection systems like YatharthaPix to evaluate real versus AI generated media.
                 </p>
                 <div className="pillar-tags">
                   <span className="pill-tag">Deep Learning</span>
@@ -609,7 +607,7 @@ export default function PortfolioPage() {
             <div className="section-header reveal">
               <span className="section-tag">03 · Tech Facilitation &amp; Training</span>
               <h2 className="section-title">
-                Hands-on learning that inspires <em>practical confidence.</em>
+                Hands on learning that inspires <em>practical confidence.</em>
               </h2>
               <p className="section-desc">
                 Leading impactful learning initiatives across municipal schools and colleges — demystifying
@@ -622,17 +620,17 @@ export default function PortfolioPage() {
               <article className="session-feature-card reveal">
                 <div className="session-pill">Featured Municipal Programme</div>
                 <h3 className="session-title">
-                  8-Day Cybersecurity Awareness Campaign
+                  8 Day Cybersecurity Awareness Campaign
                 </h3>
                 <p className="session-desc">
-                  An 8-day campaign conducted across schools and colleges in Krishnapur Municipality Ward 5 from Baisakh 30 to Jestha 8.
+                  An 8 day campaign conducted across schools and colleges in Krishnapur Municipality Ward 5 from Baisakh 30 to Jestha 8.
                   The sessions covered cybersecurity, digital awareness, safe internet use, cybercrime prevention, and the responsible use of AI
                   through interactive and practical learning.
                 </p>
 
                 <div className="session-stats-row">
                   <div className="session-stat">
-                    <strong>8 Days</strong>
+                      <strong>8 Days</strong>
                     <span>Duration</span>
                   </div>
                   <div className="session-stat">
@@ -646,13 +644,13 @@ export default function PortfolioPage() {
                 </div>
 
                 <MediaShowcaseSlot
-                  label="Krishnapur Municipality 8-Day Bootcamp"
+                  label="Krishnapur Municipality 8 Day Bootcamp"
                   aspect="large-landscape"
                   imageSrc="/images/Cybersecurity-Session.png"
                   visualTheme="krishnapur"
                   visualIcon="🛡️"
                   visualTitle="Cybersecurity Awareness Campaign"
-                  visualDesc="8-day practical sessions across schools and colleges in Krishnapur Ward 5"
+                    visualDesc="8 day practical sessions across schools and colleges in Krishnapur Ward 5"
                   visualTag="Cybersecurity Session"
                   visualMeta="750+ Students Trained"
                 />
@@ -668,7 +666,7 @@ export default function PortfolioPage() {
                 </h3>
                 <p className="session-desc">
                   An engaging introduction to cloud computing with Amazon Web Services, taking learners from core cloud concepts
-                  to hands-on experience hosting a static website on Amazon S3. The workshop encouraged curiosity, collaboration,
+                  to hands on experience hosting a static website on Amazon S3. The workshop encouraged curiosity, collaboration,
                   and practical confidence for students beginning their cloud journey.
                 </p>
 
@@ -679,7 +677,7 @@ export default function PortfolioPage() {
                   </div>
                   <div className="session-stat">
                     <strong>Amazon S3</strong>
-                    <span>Hands-on Hosting</span>
+                    <span>Hands on Hosting</span>
                   </div>
                   <div className="session-stat">
                     <strong>Practical</strong>
@@ -694,7 +692,7 @@ export default function PortfolioPage() {
                   visualTheme="cloud"
                   visualIcon="☁️"
                   visualTitle="AWS Fundamentals Workshop"
-                  visualDesc="Cloud foundations with hands-on static website hosting on Amazon S3"
+                    visualDesc="Cloud foundations with hands on static website hosting on Amazon S3"
                   visualTag="AWS Cloud Session"
                   visualMeta="Amazon S3 · Static Website Hosting"
                 />
@@ -810,18 +808,18 @@ export default function PortfolioPage() {
                     visualTitle="YatharthaPix AI Detection System"
                     visualDesc="Deep learning and computer vision for identifying synthetic imagery"
                     visualTag="AI Research Project"
-                    visualMeta="Computer Vision · Synthetic Media"
+                    visualMeta="Synthetic Media"
                   />
                 </div>
                 <div className="project-body">
                   <span className="project-role-badge sole">Independent AI Research</span>
-                  <h3 className="project-title">YatharthaPix — AI Detection System</h3>
+                  <h3 className="project-title">YatharthaPix AI Detection System</h3>
                   <p className="project-summary">
-                    An independent AI research project exploring deep learning and computer vision techniques for identifying synthetic and AI-generated imagery.
+                    An independent AI research project exploring deep learning and computer vision techniques for identifying synthetic and AI generated imagery.
                     YatharthaPix is designed to help distinguish authentic photographs from machine-generated visuals.
                   </p>
                   <div className="project-footer">
-                    <span className="project-tech">Original AI Research · Deep Learning · Computer Vision</span>
+                    <span className="project-tech">Synthetic media detection</span>
                     <span className="pill-tag">Independent Project</span>
                   </div>
                 </div>
@@ -850,6 +848,7 @@ export default function PortfolioPage() {
                   label="SajhaKhabar Digital News Media"
                   aspect="landscape"
                   imageSrc="/images/SajhaKhabar-Landing.png"
+                  imageFit="contain"
                   visualTheme="sajhakhabar"
                   visualIcon="📰"
                   visualTitle="SajhaKhabar Digital Media"
@@ -887,6 +886,7 @@ export default function PortfolioPage() {
                   label="OrbitSkincare E-Commerce Platform"
                   aspect="landscape"
                   imageSrc="/images/OrbitSkincare-Landing.png"
+                  imageFit="contain"
                   visualTheme="orbitskincare"
                   visualIcon="✨"
                   visualTitle="OrbitSkincare Brand &amp; Store"
@@ -982,12 +982,12 @@ export default function PortfolioPage() {
                 <div className="section-tag">06 · Get in Touch</div>
                 <div className="contact-identity">
                   <strong>Aayush Paneru</strong>
-                  <span>Full-Stack Developer · AI &amp; Cloud Facilitator</span>
+                  <span>Full Stack Developer · AI &amp; Cloud Facilitator</span>
                 </div>
                 <div className="contact-copy">
                   <h2>Have an idea, project, or session in mind?</h2>
                   <p>
-                    Whether you are seeking full-stack web engineering, technology advisory, or want to organize a hands-on
+                    Whether you are seeking full stack web engineering, technology advisory, or want to organize a hands on
                     AI / cybersecurity training session, I would love to connect.
                   </p>
                 </div>

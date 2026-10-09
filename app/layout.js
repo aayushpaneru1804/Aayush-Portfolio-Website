@@ -1,9 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Aayush Paneru — Full-Stack Developer & Tech Facilitator",
+  title: "Aayush Paneru — Full Stack Developer & Tech Facilitator",
   description:
-    "Portfolio of Aayush Paneru — Full-Stack Developer, AI & Cloud Computing Facilitator, and Cybersecurity Trainer building high-impact digital experiences.",
+    "Portfolio of Aayush Paneru — Full Stack Developer, AI & Cloud Computing Facilitator, and Cybersecurity Trainer building high impact digital experiences.",
 };
 
 export const viewport = {
